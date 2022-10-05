@@ -1,8 +1,11 @@
 #include "pch.h"
-
 #include "renderer_init.h"
-#include "window.h"
+
 #include "shape.h"
+#include "window.h"
+
+#include "GLFW/glfw3.h"
+
 
 static b8 is_initialized = false;
 

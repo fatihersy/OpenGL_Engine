@@ -3,17 +3,17 @@
 
 f32 triangle_vertices[] =
 {
-    -0.5f, -0.5f, 0.0f,
-    0.5f, -0.5f, 0.0f,
-    0.0f,  0.5f, 0.0f
+     0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
+    -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
+     0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top 
 };
 
 f32 quad_vertices[] =
 {
-    0.5f,  0.5f, 0.0f,
-    0.5f, -0.5f, 0.0f,
-    -0.5f, -0.5f, 0.0f,
-    -0.5f,  0.5f, 0.0f
+    0.5f,  0.5f, 0.0f, 0.6f, 0.2f, 0.4f,
+    0.5f, -0.5f, 0.0f, 0.3f, 0.5f, 0.7f,
+    -0.5f, -0.5f, 0.0f, 0.6f, 0.2f, 0.6f,
+    -0.5f,  0.5f, 0.0f, 0.5f, 0.3f, 0.3f
 };
 
 u32 triangle_indices[] =
@@ -53,10 +53,10 @@ std::vector<u32> get_indices(primitive_types type)
 u32 get_vertice_count(primitive_types type)
 {
     if (type == TRIANGLE)
-        return ARRAY_COUNT(triangle_vertices);
+        return std::size(triangle_vertices);
 
     if (type == QUAD)
-        return ARRAY_COUNT(quad_vertices);
+        return std::size(quad_vertices);
 
     return 0;
 }
@@ -64,10 +64,10 @@ u32 get_vertice_count(primitive_types type)
 u32 get_indice_count(primitive_types type)
 {
     if (type == TRIANGLE)
-        return ARRAY_COUNT(triangle_indices);
+        return std::size(triangle_indices);
 
     if (type == QUAD)
-        return ARRAY_COUNT(quad_indices);
+        return std::size(quad_indices);
 
     return 0;
 }

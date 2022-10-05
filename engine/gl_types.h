@@ -4,20 +4,15 @@
 #define GL_TYPES_H
 
 #include <vector>
+#include <cmath>
 
 #include "glad/glad.h"
-#include "GLFW/glfw3.h"
 
 #include <defines.h>
 
 template<typename T> u64 VECTOR_SIZE(std::vector<T> vector)
 {
 	return vector.size() * sizeof(T);
-}
-
-template<typename T> u32 ARRAY_COUNT(T array[])
-{
-	return sizeof(array) * sizeof(T);
 }
 
 typedef enum primitive_types
