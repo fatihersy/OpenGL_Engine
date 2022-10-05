@@ -4,62 +4,14 @@
 #define PRIMITIVES_H
 
 #include <defines.h>
-#include <vector>
 
-namespace primitives 
-{
-    enum types {
-        TRIANGLE,
-        QUAD
-    };
+#include "gl_types.h"
 
-    std::vector<f32> get_vertices(types type)
-    {
-        f32 triangle_vertices[] =
-        {
-            -0.5f, -0.5f, 0.0f,
-            0.5f, -0.5f, 0.0f,
-            0.0f,  0.5f, 0.0f
-        };
-        
-        f32 quad_vertices[] =
-        {
-            0.5f,  0.5f, 0.0f,
-            0.5f, -0.5f, 0.0f,
-            -0.5f, -0.5f, 0.0f,
-            -0.5f,  0.5f, 0.0f
-        };
-        
-        if (type == TRIANGLE)
-            return std::vector<f32>(std::begin(triangle_vertices), std::end(triangle_vertices));
+std::vector<f32> get_vertices(primitive_types type);
 
-        if (type == QUAD)
-            return std::vector<f32>(std::begin(quad_vertices), std::end(quad_vertices));
+std::vector<u32> get_indices(primitive_types type);
 
-        return std::vector<f32>();
-    }
+u32 get_indice_count(primitive_types type);
 
-    std::vector<u32> get_indices(types type)
-    {
-        u32 triangle_indices[] =
-        {
-            0, 1, 2
-        };
-
-        u32 quad_indices[] =
-        {
-            0, 1, 3,
-            1, 2, 3
-        };
-
-        if (type == TRIANGLE)
-            return std::vector<u32>(std::begin(triangle_indices), std::end(triangle_indices));
-
-        if (type == QUAD)
-            return std::vector<u32>(std::begin(quad_indices), std::end(quad_indices));
-
-        return std::vector<u32>();
-    }
-}
 
 #endif // !PRIMITIVES_H

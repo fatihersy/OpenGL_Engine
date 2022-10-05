@@ -17,6 +17,4 @@ void renderer_begin_render();
 
 void renderer_end_render();
 
-void initialize_shape();
-
 #endif // !RENDERER_INIT_H

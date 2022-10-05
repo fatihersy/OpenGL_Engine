@@ -55,6 +55,15 @@
     <ClInclude Include="file_stream.h">
       <Filter>Renderer\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="shape.h">
+      <Filter>Renderer\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>Renderer\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="gl_types.h">
+      <Filter>Renderer\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="renderer_init.cpp">
@@ -79,6 +88,15 @@
       <Filter>core</Filter>
     </ClCompile>
     <ClCompile Include="file_stream.cpp">
+      <Filter>Renderer\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="shape.cpp">
+      <Filter>Renderer\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.cpp">
+      <Filter>Renderer\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives.cpp">
       <Filter>Renderer\Utils</Filter>
     </ClCompile>
   </ItemGroup>

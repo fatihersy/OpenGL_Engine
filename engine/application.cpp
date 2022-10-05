@@ -24,8 +24,6 @@ b8 application_create()
 
 b8 application_run() 
 {
-	initialize_shape();
-
 	while (renderer_begin_loop() && is_running)
 	{
 		renderer_begin_render();

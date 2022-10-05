@@ -127,7 +127,7 @@ typedef enum keys
 	GLFW_KEY_RIGHT_ALT = 346,
 	GLFW_KEY_RIGHT_SUPER = 347,
 	GLFW_KEY_MENU = 348
-};
+} keys;
 
 KAPI b8 application_create();
 
