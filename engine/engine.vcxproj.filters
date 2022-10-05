@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{760bbc24-2be8-4c9e-bd6f-85757e309b1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library Files">
+      <UniqueIdentifier>{b3e94d39-f6f8-4664-aafc-32d5092dd6d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{16e9efa4-8ae8-4d3c-8619-ec1c3528a834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform">
+      <UniqueIdentifier>{cff870e5-7adf-49d7-871f-d172b408910b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="containers">
+      <UniqueIdentifier>{8c675ac2-3cb9-4e3f-b7cb-256c44a23303}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Utils">
+      <UniqueIdentifier>{c8fe64bf-9e5f-4623-85f2-6d6ac123b447}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="renderer_init.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Library Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Library Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="entry.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="platform.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="window.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives.h">
+      <Filter>Renderer\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="file_stream.h">
+      <Filter>Renderer\Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="renderer_init.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="application.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="platform_win32.cpp">
+      <Filter>platform</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="window.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="file_stream.cpp">
+      <Filter>Renderer\Utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint">
+      <Filter>Library Files</Filter>
+    </None>
+    <None Include="vertex.vert">
+      <Filter>Renderer\Utils</Filter>
+    </None>
+    <None Include="fragment.frag">
+      <Filter>Renderer\Utils</Filter>
+    </None>
+  </ItemGroup>
+</Project>
