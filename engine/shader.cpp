@@ -6,6 +6,9 @@
 
 static std::vector<glprogram> programs;
 
+std::vector<f32> colorise_vertices(std::vector<f32> vertices);
+f32 get_default_color(size_t i);
+
 int create_program(const char* vertex_path, const char* fragment_path)
 {
 	GLuint program_id = glCreateProgram();
@@ -73,16 +76,15 @@ GLuint compile_shader(const char* path, GLint shader_type)
 }
 
 
-u32 bind_vertices(primitive_types type)
+u32 bind_vertex_data(primitive_types type)
 {
 	GLuint VAO, VBO, EBO;
 
-	std::vector<f32> vertices = get_vertices(type);
+	std::vector<f32> vertices = colorise_vertices(get_vertices(type));
 	std::vector<u32> indices  = get_indices(type);
 
 	u64 vertices_size = VECTOR_SIZE<f32>(vertices);
 	u64 indices_size = VECTOR_SIZE<u32>(indices);
-	u32 vertex_size = vertices.size() / indices.size();
 
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
@@ -111,6 +113,36 @@ u32 bind_vertices(primitive_types type)
 
 	return VAO;
 }
+
+std::vector<f32> colorise_vertices(std::vector<f32> vertices)
+{
+	std::vector<f32> temp;
+
+	for (size_t i = 0; i < vertices.size(); i = i + 3)
+	{
+		temp.push_back(vertices.at(i));
+		temp.push_back(vertices.at(i + 1));
+		temp.push_back(vertices.at(i + 2));
+		temp.push_back(get_default_color(i));
+		temp.push_back(get_default_color(i + 1));
+		temp.push_back(get_default_color(i + 2));
+	}
+
+	return temp;
+}
+
+f32 get_default_color(size_t i) 
+{
+	std::vector<f32> default_colors
+	{
+		1.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 1.0f
+	};
+	
+	return default_colors.at(i % default_colors.size());
+}
+
 
 GLuint get_last_program_id() 
 {

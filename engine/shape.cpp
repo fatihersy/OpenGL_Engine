@@ -18,7 +18,7 @@ glshape initialize_shape(primitive_types _type)
 
 	shape.indice_count = get_indice_count(shape.type);
 
-	shape.VAO = bind_vertices(shape.type);
+	shape.VAO = bind_vertex_data(shape.type);
 
 	return shape;
 }

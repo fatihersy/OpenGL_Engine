@@ -9,7 +9,7 @@ GLuint compile_shader(const char* path, GLint shader_type);
 
 int create_program(const char* vertex_path, const char* fragment_path);
 
-GLuint bind_vertices(primitive_types type);
+GLuint bind_vertex_data(primitive_types type);
 
 GLuint get_last_program_id();
 
