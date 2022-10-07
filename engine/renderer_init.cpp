@@ -30,7 +30,7 @@ b8 initialize_renderer(const char* title, i32 width, i32 height)
 
 	set_framebuffer_callback();
 
-	shape = initialize_shape(primitive_types::QUAD);
+	shape = initialize_shape(primitive_types::TRIANGLE, "wall.jpg");
 
 	is_initialized = true;
 
@@ -47,6 +47,9 @@ b8 renderer_update()
 void draw_shape(glshape shape) 
 {
 	glUseProgram(shape.program_handle);
+
+	if (shape.texture_handle) glBindTexture(GL_TEXTURE_2D, shape.texture_handle);
+
 	glBindVertexArray(shape.VAO);
 	glDrawElements(GL_TRIANGLES, shape.indice_count, GL_UNSIGNED_INT, 0);
 }

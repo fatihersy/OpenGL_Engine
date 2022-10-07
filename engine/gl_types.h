@@ -24,7 +24,7 @@ typedef enum primitive_types
 typedef struct glshape
 {
 	GLuint program_handle;
-
+	GLuint texture_handle;
 	GLuint VAO;
 
 	primitive_types type;

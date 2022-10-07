@@ -23,6 +23,9 @@
     <Filter Include="Renderer\Utils">
       <UniqueIdentifier>{c8fe64bf-9e5f-4623-85f2-6d6ac123b447}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{e70a6789-6b1d-41f8-8487-e3a32c44f345}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="renderer_init.h">
@@ -62,6 +65,9 @@
       <Filter>Renderer\Utils</Filter>
     </ClInclude>
     <ClInclude Include="gl_types.h">
+      <Filter>Renderer\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
       <Filter>Renderer\Utils</Filter>
     </ClInclude>
   </ItemGroup>
@@ -105,10 +111,10 @@
       <Filter>Library Files</Filter>
     </None>
     <None Include="vertex.vert">
-      <Filter>Renderer\Utils</Filter>
+      <Filter>Resources</Filter>
     </None>
     <None Include="fragment.frag">
-      <Filter>Renderer\Utils</Filter>
+      <Filter>Resources</Filter>
     </None>
   </ItemGroup>
 </Project>

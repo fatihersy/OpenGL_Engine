@@ -5,7 +5,7 @@
 
 #include "gl_types.h"
 
-glshape initialize_shape(primitive_types _type);
+glshape initialize_shape(primitive_types _type, const char* texture_path = "");
 
 
 

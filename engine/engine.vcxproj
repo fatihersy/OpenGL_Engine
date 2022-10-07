@@ -155,6 +155,7 @@
     <ClInclude Include="renderer_init.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shape.h" />
+    <ClInclude Include="stb_image.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>

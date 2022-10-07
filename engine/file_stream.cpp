@@ -5,7 +5,6 @@
 
 std::string read_file(const char* file_name) 
 {
-
 	std::string path = "../engine/";
 	path += file_name;
 

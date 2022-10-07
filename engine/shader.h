@@ -5,9 +5,11 @@
 
 #include "gl_types.h"
 
+int create_program(const char* vertex_path, const char* fragment_path);
+
 GLuint compile_shader(const char* path, GLint shader_type);
 
-int create_program(const char* vertex_path, const char* fragment_path);
+GLuint generate_texture(const char* path, GLenum type);
 
 GLuint bind_vertex_data(primitive_types type);
 

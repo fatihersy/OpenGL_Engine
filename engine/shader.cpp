@@ -4,6 +4,9 @@
 #include "file_stream.h"
 #include "primitives.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 static std::vector<glprogram> programs;
 
 std::vector<f32> colorise_vertices(std::vector<f32> vertices);
@@ -75,12 +78,42 @@ GLuint compile_shader(const char* path, GLint shader_type)
 	return shader;
 }
 
+GLuint generate_texture(const char* file_name, GLenum type) 
+{
+	std::string path = "../engine/resources/";
+	path += file_name;
+
+	GLuint texture;
+
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	int width, height, nrChannels;
+	unsigned char* data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
+
+	if (data) 
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else std::cout << "Failed to load texture" << std::endl;
+	
+	stbi_image_free(data);
+
+	return texture;
+}
+
 
 u32 bind_vertex_data(primitive_types type)
 {
 	GLuint VAO, VBO, EBO;
 
-	std::vector<f32> vertices = colorise_vertices(get_vertices(type));
+	std::vector<f32> vertices = get_vertices(type);
 	std::vector<u32> indices  = get_indices(type);
 
 	u64 vertices_size = VECTOR_SIZE<f32>(vertices);
@@ -98,11 +131,14 @@ u32 bind_vertex_data(primitive_types type)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices_size, &indices.front(), GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 	// color attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
+	// texture coord attribute
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glEnableVertexAttribArray(2);
 
 	// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -112,23 +148,6 @@ u32 bind_vertex_data(primitive_types type)
 	glBindVertexArray(0);
 
 	return VAO;
-}
-
-std::vector<f32> colorise_vertices(std::vector<f32> vertices)
-{
-	std::vector<f32> temp;
-
-	for (size_t i = 0; i < vertices.size(); i = i + 3)
-	{
-		temp.push_back(vertices.at(i));
-		temp.push_back(vertices.at(i + 1));
-		temp.push_back(vertices.at(i + 2));
-		temp.push_back(get_default_color(i));
-		temp.push_back(get_default_color(i + 1));
-		temp.push_back(get_default_color(i + 2));
-	}
-
-	return temp;
 }
 
 f32 get_default_color(size_t i) 
