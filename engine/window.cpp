@@ -48,6 +48,19 @@ b8 window_should_close()
 	return !glfwWindowShouldClose(window);
 }
 
+
+void glfw_begin_frame() 
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+	glClearColor(0.8f, 0.3f, 0.3f, 1.0f);
+}
+
+void glfw_end_frame() 
+{
+	glfwSwapBuffers(window);
+	glfwPollEvents();
+}
+
 void set_framebuffer_callback()
 {
 	glViewport(0, 0, width, height);

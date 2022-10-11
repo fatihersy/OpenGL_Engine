@@ -3,7 +3,7 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include "gl_types.h"
+#include "gl_types.inl"
 
 int create_program(const char* vertex_path, const char* fragment_path);
 

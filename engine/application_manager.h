@@ -5,21 +5,17 @@
 
 #include <vector>
 
-#include <defines.h>
-
 class Application_manager
 {
 public:
 	 Application_manager();
 	~Application_manager();
 
-	void create_shape();
-
-	void renderer_loop();
-
 	b8 create_application();
 
-	b8 update_systems();
+	void create_shape();
+	void update_renderer();
+	void update_systems();
 
 	b8 is_running();
 
@@ -149,23 +145,8 @@ private:
 		GLFW_KEY_MENU = 348
 	} keys;
 
-	typedef struct fshape
-	{
-		u32 ID;
-
-		i32 width;
-		i32 height;
-		i32 scale;
-
-		i32 x;
-		i32 y;
-		i32 z;
-	} fshape;
-
 	b8 _is_running;
 	b8 _is_suspended;
-
-	std::vector<fshape> shapes;
 };
 
 

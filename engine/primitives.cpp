@@ -55,10 +55,10 @@ std::vector<u32> get_indices(primitive_types type)
 u32 get_vertice_count(primitive_types type)
 {
     if (type == TRIANGLE)
-        return std::size(triangle_vertices);
+        return (u32) std::size(triangle_vertices);
 
     if (type == QUAD)
-        return std::size(quad_vertices);
+        return (u32) std::size(quad_vertices);
 
     return 0;
 }
@@ -66,10 +66,10 @@ u32 get_vertice_count(primitive_types type)
 u32 get_indice_count(primitive_types type)
 {
     if (type == TRIANGLE)
-        return std::size(triangle_indices);
+        return (u32) std::size(triangle_indices);
 
     if (type == QUAD)
-        return std::size(quad_indices);
+        return (u32) std::size(quad_indices);
 
     return 0;
 }

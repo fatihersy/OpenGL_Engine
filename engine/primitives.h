@@ -3,7 +3,7 @@
 #ifndef PRIMITIVES_H
 #define PRIMITIVES_H
 
-#include "gl_types.h"
+#include "renderer_types.inl"
 
 std::vector<f32> get_vertices(primitive_types type);
 

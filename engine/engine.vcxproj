@@ -149,14 +149,13 @@
     <ClInclude Include="entry.h" />
     <ClInclude Include="file_stream.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="gl_types.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="platform.h" />
     <ClInclude Include="primitives.h" />
-    <ClInclude Include="renderer_init.h" />
+    <ClInclude Include="renderer_backend.h" />
+    <ClInclude Include="renderer_frontend.h" />
     <ClInclude Include="shader.h" />
-    <ClInclude Include="shape.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="transformations.h" />
     <ClInclude Include="window.h" />
@@ -178,15 +177,17 @@
     </ClCompile>
     <ClCompile Include="platform_win32.cpp" />
     <ClCompile Include="primitives.cpp" />
-    <ClCompile Include="renderer_init.cpp" />
+    <ClCompile Include="renderer_backend.cpp" />
+    <ClCompile Include="renderer_frontend.cpp" />
     <ClCompile Include="shader.cpp" />
-    <ClCompile Include="shape.cpp" />
     <ClCompile Include="transformations.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
     <None Include="fragment.frag" />
+    <None Include="gl_types.inl" />
+    <None Include="renderer_types.inl" />
     <None Include="vertex.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

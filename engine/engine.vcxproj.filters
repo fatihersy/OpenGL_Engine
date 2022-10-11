@@ -11,9 +11,6 @@
     <Filter Include="Library Files">
       <UniqueIdentifier>{b3e94d39-f6f8-4664-aafc-32d5092dd6d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Renderer\Utils">
-      <UniqueIdentifier>{c8fe64bf-9e5f-4623-85f2-6d6ac123b447}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resources">
       <UniqueIdentifier>{e70a6789-6b1d-41f8-8487-e3a32c44f345}</UniqueIdentifier>
     </Filter>
@@ -32,11 +29,11 @@
     <Filter Include="Core">
       <UniqueIdentifier>{16e9efa4-8ae8-4d3c-8619-ec1c3528a834}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Renderer\OpenGL &amp; Libraries">
+      <UniqueIdentifier>{2e022dc2-714b-48da-b8f5-bc3289fbbc2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="renderer_init.h">
-      <Filter>Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Library Files</Filter>
     </ClInclude>
@@ -52,32 +49,11 @@
     <ClInclude Include="platform.h">
       <Filter>Platform</Filter>
     </ClInclude>
-    <ClInclude Include="input.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="window.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="file_stream.h">
-      <Filter>Renderer\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="primitives.h">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="gl_types.h">
-      <Filter>Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="application_manager.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="camera.h">
       <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="shape.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="shader.h">
-      <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="stb_image.h">
       <Filter>Vendor</Filter>
@@ -85,11 +61,29 @@
     <ClInclude Include="transformations.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="file_stream.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer_frontend.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer_backend.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="window.h">
+      <Filter>Renderer\OpenGL &amp; Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>Renderer\OpenGL &amp; Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>Renderer\OpenGL &amp; Libraries</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="renderer_init.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Library Files</Filter>
     </ClCompile>
@@ -99,35 +93,38 @@
     <ClCompile Include="platform_win32.cpp">
       <Filter>Platform</Filter>
     </ClCompile>
-    <ClCompile Include="input.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="window.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="file_stream.cpp">
-      <Filter>Renderer\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="primitives.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="application_manager.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="camera.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="shape.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="shader.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
     <ClCompile Include="glad.c">
       <Filter>Vendor</Filter>
     </ClCompile>
     <ClCompile Include="transformations.cpp">
       <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="file_stream.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer_frontend.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer_backend.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>Renderer\OpenGL &amp; Libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="window.cpp">
+      <Filter>Renderer\OpenGL &amp; Libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.cpp">
+      <Filter>Renderer\OpenGL &amp; Libraries</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +136,12 @@
     </None>
     <None Include="fragment.frag">
       <Filter>Resources</Filter>
+    </None>
+    <None Include="renderer_types.inl">
+      <Filter>Renderer</Filter>
+    </None>
+    <None Include="gl_types.inl">
+      <Filter>Renderer\OpenGL &amp; Libraries</Filter>
     </None>
   </ItemGroup>
 </Project>

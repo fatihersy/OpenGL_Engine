@@ -1,12 +1,9 @@
 #include "pch.h"
 #include "input.h"
 
-#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include <vector>
-
-#include "window.h"
 
 static b8 is_initialized = false;
 
@@ -29,17 +26,19 @@ b8 define_key_event(i32 code, APP_KEY_EVENT code_event)
 	if (!is_initialized) return false;
 
 	key_events.push_back(std::pair(code, code_event));
+
+	return true;
 }
 
-b8 update_input() 
+b8 update_input_system(void* window)
 {
 	if (!is_initialized) return false;
 
 	std::vector<APP_KEY_EVENT> event_queue = {};
 
-	for(auto var : key_events)
+	for (auto& var : key_events)
 	{
-		if(glfwGetKey((GLFWwindow*)get_window_instance(), var.first)) 
+		if(glfwGetKey((GLFWwindow*)window, var.first))
 		{
 			pressed.push_back(var.first);
 
@@ -55,7 +54,7 @@ b8 update_input()
 		break;
 
 		case APPLICATION_KEY_EVENT_QUIT:
-			glfwSetWindowShouldClose((GLFWwindow*)get_window_instance(), GL_TRUE);
+			glfwSetWindowShouldClose((GLFWwindow*)window, GL_TRUE);
 		break;
 
 		case APPLICATION_PING_INPUT:
@@ -77,6 +76,8 @@ b8 update_input()
 	previous_pressed = pressed;
 
 	pressed.clear();
+
+	event_queue.clear();
 
 	return true;
 }
