@@ -11,20 +11,26 @@
     <Filter Include="Library Files">
       <UniqueIdentifier>{b3e94d39-f6f8-4664-aafc-32d5092dd6d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="core">
-      <UniqueIdentifier>{16e9efa4-8ae8-4d3c-8619-ec1c3528a834}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="platform">
-      <UniqueIdentifier>{cff870e5-7adf-49d7-871f-d172b408910b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="containers">
-      <UniqueIdentifier>{8c675ac2-3cb9-4e3f-b7cb-256c44a23303}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Renderer\Utils">
       <UniqueIdentifier>{c8fe64bf-9e5f-4623-85f2-6d6ac123b447}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources">
       <UniqueIdentifier>{e70a6789-6b1d-41f8-8487-e3a32c44f345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{c1eb7ad7-7315-4865-a4c6-793210f345c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor">
+      <UniqueIdentifier>{4955dc96-fdc1-439e-bc2d-dcb0254f636f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{329c45fe-8308-4de1-b6e4-6f37f94be13e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{cff870e5-7adf-49d7-871f-d172b408910b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{16e9efa4-8ae8-4d3c-8619-ec1c3528a834}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -38,37 +44,46 @@
       <Filter>Library Files</Filter>
     </ClInclude>
     <ClInclude Include="application.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="entry.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="platform.h">
-      <Filter>platform</Filter>
+      <Filter>Platform</Filter>
     </ClInclude>
     <ClInclude Include="input.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="window.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="primitives.h">
-      <Filter>Renderer\Utils</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="file_stream.h">
       <Filter>Renderer\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="shape.h">
-      <Filter>Renderer\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="shader.h">
-      <Filter>Renderer\Utils</Filter>
+    <ClInclude Include="primitives.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="gl_types.h">
-      <Filter>Renderer\Utils</Filter>
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="application_manager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="shape.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="stb_image.h">
-      <Filter>Renderer\Utils</Filter>
+      <Filter>Vendor</Filter>
+    </ClInclude>
+    <ClInclude Include="transformations.h">
+      <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -79,31 +94,40 @@
       <Filter>Library Files</Filter>
     </ClCompile>
     <ClCompile Include="application.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="glad.c">
-      <Filter>Library Files</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="platform_win32.cpp">
-      <Filter>platform</Filter>
+      <Filter>Platform</Filter>
     </ClCompile>
     <ClCompile Include="input.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="window.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="file_stream.cpp">
       <Filter>Renderer\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="primitives.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="application_manager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="shape.cpp">
-      <Filter>Renderer\Utils</Filter>
+      <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="shader.cpp">
-      <Filter>Renderer\Utils</Filter>
+      <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="primitives.cpp">
-      <Filter>Renderer\Utils</Filter>
+    <ClCompile Include="glad.c">
+      <Filter>Vendor</Filter>
+    </ClCompile>
+    <ClCompile Include="transformations.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

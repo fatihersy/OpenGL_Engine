@@ -1,15 +1,12 @@
 #include "pch.h"
 #include "renderer_init.h"
 
-#include "shape.h"
 #include "window.h"
+#include "gl_types.h"
 
 #include "GLFW/glfw3.h"
 
-
 static b8 is_initialized = false;
-
-static glshape shape;
 
 void draw_shape(glshape shape);
 
@@ -30,7 +27,7 @@ b8 initialize_renderer(const char* title, i32 width, i32 height)
 
 	set_framebuffer_callback();
 
-	shape = initialize_shape(primitive_types::TRIANGLE, "wall.jpg");
+	// TODO: ...  shape = initialize_shape(primitive_types::TRIANGLE, "wall.jpg");
 
 	is_initialized = true;
 
@@ -39,7 +36,7 @@ b8 initialize_renderer(const char* title, i32 width, i32 height)
 
 b8 renderer_update() 
 {
-	draw_shape(shape);
+	//draw_shape(shape);
 
 	return true;
 }

@@ -1,41 +1,27 @@
 #include "pch.h"
 #include "application.h"
 
-#include "renderer_init.h"
-#include "input.h"
+#include "application_manager.h"
 
-static b8 is_running = false;
+Application_manager app_manager;
 
 b8 application_create() 
 {
-	if (!initialize_renderer("Hello OpenGL", 800, 640)) return false;
-
-	initialize_input();
-
-	define_key_event(GLFW_KEY_ESCAPE,  APPLICATION_KEY_EVENT_QUIT);
-	define_key_event(GLFW_KEY_W,		APPLICATION_PING_INPUT);
-	define_key_event(GLFW_KEY_SPACE,   APPLICATION_CLEAR_CONSOLE);
-	define_key_event(GLFW_KEY_P, APPLICATION_SWITCH_POLY_MOD);
-
-	is_running = true;
+	if (!app_manager.create_application()) return false;
 
 	return true;
 }
 
 b8 application_run() 
 {
-	while (renderer_begin_loop() && is_running)
+	while (app_manager.is_running())
 	{
-		renderer_begin_render();
+		app_manager.renderer_loop();
 
-		renderer_update();
-
-		renderer_end_render();
-
-		update_input();
+		app_manager.update_systems();
 	}
 
-	terminate_renderer();
+
 
 	return true;
 }

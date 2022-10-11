@@ -144,6 +144,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
+    <ClInclude Include="application_manager.h" />
+    <ClInclude Include="camera.h" />
     <ClInclude Include="entry.h" />
     <ClInclude Include="file_stream.h" />
     <ClInclude Include="framework.h" />
@@ -156,10 +158,13 @@
     <ClInclude Include="shader.h" />
     <ClInclude Include="shape.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="transformations.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
+    <ClCompile Include="application_manager.cpp" />
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="file_stream.cpp" />
     <ClCompile Include="glad.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -176,6 +181,7 @@
     <ClCompile Include="renderer_init.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="shape.cpp" />
+    <ClCompile Include="transformations.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>

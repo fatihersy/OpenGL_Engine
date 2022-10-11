@@ -9,7 +9,6 @@
 
 static std::vector<glprogram> programs;
 
-std::vector<f32> colorise_vertices(std::vector<f32> vertices);
 f32 get_default_color(size_t i);
 
 int create_program(const char* vertex_path, const char* fragment_path)
@@ -37,7 +36,7 @@ int create_program(const char* vertex_path, const char* fragment_path)
 		return success;
 	}
 
-	glprogram program;
+	glprogram program = {};
 
 	program.handle = program_id;
 	program.vertex = v_shader;
@@ -131,14 +130,14 @@ u32 bind_vertex_data(primitive_types type)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices_size, &indices.front(), GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 	// color attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(1);
+	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	//glEnableVertexAttribArray(1);
 	// texture coord attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
 
 	// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
