@@ -2,7 +2,6 @@
 #include "ftool.h"
 
 #include <fstream>
-#include "fstring.h"
 
 struct compare
 {
@@ -29,18 +28,16 @@ template<typename T> size_t vector_element_index(std::vector<T> vec, T key)
 	return i;
 }
 
-std::vector<std::string>::iterator string_vector_match_index(std::vector<std::string> vec, std::string key)
+u32 string_vector_match_index(vec_str vec, string key)
 {
-	std::vector<std::string>::iterator i = vec.begin();
-
-	for (std::string& itr : vec)
+	int i = 0;
+	for (vec_str::iterator itr = vec.begin(); itr != vec.end(); ++itr)
 	{
-		if (string_match(itr, key)) break;
-
+		if (string_match(*itr, key)) break;
 		i++;
 	}
 
-	return vec.begin();
+	return i;
 }
 
 std::string read_file(const char* file_name)

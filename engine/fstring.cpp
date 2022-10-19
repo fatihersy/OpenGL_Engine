@@ -22,6 +22,23 @@ std::string delete_line(std::string original, const char* text)
 
 	while (std::getline(iss, line))
 	{
+		if (text != line)
+		{
+			temp += line + "\n";
+		}
+	}
+
+	return temp;
+}
+
+std::string delete_matched_lines(std::string original, const char* text)
+{
+	std::istringstream iss(original);
+	std::string line;
+	std::string temp;
+
+	while (std::getline(iss, line))
+	{
 		if (line.find(text) == std::string::npos)
 		{
 			temp += line + "\n";

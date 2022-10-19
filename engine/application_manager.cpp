@@ -47,7 +47,7 @@ b8 Application_manager::create_application()
 
 	shader.delete_layout("0");
 
-	//shader.print_content();
+	shader.print_content();
 
 	_is_running = true;
 

@@ -6,10 +6,13 @@
 #include "defines.h"
 #include <string>
 #include <vector>
+#include "fstring.h"
 
-template<class T> size_t vector_element_index(std::vector<T> vec, T key);
+typedef std::vector<std::string> vec_str;
 
-std::vector<std::string>::iterator string_vector_match_index(std::vector<std::string> vec, std::string key);
+template<typename T> size_t vector_element_index(std::vector<T> vec, T key);
+
+u32 string_vector_match_index(vec_str vec, string key);
 
 std::string read_file(const char* path);
 
