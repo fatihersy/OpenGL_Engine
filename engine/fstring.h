@@ -10,6 +10,8 @@
 
 typedef std::string string;
 
+std::string set_line(std::string original, const char* text, const char* splitter);
+
 std::string add_line(std::string original, const char* text, const char* splitter);
 
 std::string delete_line(std::string original, const char* text);

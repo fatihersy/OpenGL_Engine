@@ -11,19 +11,27 @@ typedef struct shader_enums
 {
 	const char* LAYOUT = "//layouts";
 	const char* VARIABLE = "//variables";
+	const char* MAIN_CONTENT = "//content";
 
 }shader_enums;
 
 typedef struct fshader 
 {
 private:
-	std::string content = 
+	string definitions = 
 		"#version 330 core\n"
 		"//layouts\n"
 		"//variables\n";
 
-	std::vector<std::string> layouts;
-	std::vector<std::string> variables;
+	string main_func_base = 
+		"void main()\n" 
+		"{\n"
+			"//content\n"
+		"}\n";
+
+	string  main_func_str;
+	vec_str layouts;
+	vec_str variables;
 
 public:
 	void add_layout(const char* location, const char* vector, const char* name)
@@ -32,13 +40,13 @@ public:
 		shader_enums shader_enums;
 
 		std::string text;
-		text = "layout (location = " + std::string(location) + ") in " + vector + " " + name;
+		text = "layout (location = " + std::string(location) + ") in " + vector + " " + name + ";";
 
 		layouts.push_back(text);
 
 		text += "\n";
 
-		content = add_line(content, text.c_str(), shader_enums.LAYOUT);
+		definitions = add_line(definitions, text.c_str(), shader_enums.LAYOUT);
 	}
 
 	void add_variable(const char* io, const char* vector, const char* name)
@@ -47,13 +55,13 @@ public:
 		shader_enums shader_enums;
 
 		std::string text;
-		text = io + std::string(" ") + vector + std::string(" ") + name;
+		text = io + std::string(" ") + vector + std::string(" ") + name + std::string(";");
 
 		text += "\n";
 
 		variables.push_back(text);
 
-		content = add_line(content, text.c_str(), shader_enums.VARIABLE);
+		definitions = add_line(definitions, text.c_str(), shader_enums.VARIABLE);
 	}
 
 	void delete_layout(const char* location)
@@ -69,7 +77,7 @@ public:
 		{
 			layouts.erase(layouts.begin()+index);
 
-			content = delete_line(content, layout_full_str.c_str());
+			definitions = delete_line(definitions, layout_full_str.c_str());
 		}
 	}
 
@@ -85,13 +93,36 @@ public:
 		{
 			variables.erase(variables.begin() + index);
 			// TODO:
-			content = delete_line(content, var_full_str.c_str());
+			definitions = delete_line(definitions, var_full_str.c_str());
 		}
+	}
+
+	void set_main_func(const char* text)
+	{
+		//"void main()\n"
+		//	"{\n"
+		//		"//content\n"
+		//	"}";
+
+		main_func_str = text;
 	}
 
 	void print_content()
 	{
-		std::cout << content << std::endl;
+		shader_enums shader_enums;
+
+		string _main = set_line(main_func_base, main_func_str.c_str(), shader_enums.MAIN_CONTENT);
+
+		std::cout << definitions << _main << std::endl;
+	}
+
+	string get_content()
+	{
+		shader_enums shader_enums;
+
+		string _main = set_line(main_func_base, main_func_str.c_str(), shader_enums.MAIN_CONTENT);
+
+		return definitions + _main;
 	}
 
 } fshader;

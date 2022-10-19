@@ -3,6 +3,17 @@
 
 #include "defines.h"
 
+std::string set_line(std::string original, const char* text, const char* splitter)
+{
+	std::string token = original.substr(0, original.find(splitter));
+	std::string token_left = original.substr(original.find(splitter), original.length());
+
+	token.append(text);
+	token.append(token_left);
+
+	return token;
+}
+
 std::string add_line(std::string original, const char* text, const char* splitter)
 {
 	std::string token		 = original.substr(0, original.find(splitter));

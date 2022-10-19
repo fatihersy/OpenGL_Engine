@@ -45,9 +45,14 @@ b8 Application_manager::create_application()
 	shader.add_variable("out", "vec3", "ourColor");
 	shader.add_variable("out", "vec2", "TexCoord");
 
-	shader.delete_layout("0");
+	shader.set_main_func
+	(
+		"	gl_Position = vec4(aPos, 1.0);\n"
+		"	ourColor = aColor;\n"
+		"	TexCoord = aTexCoord;\n"
+	);
 
-	shader.print_content();
+	std::cout << shader.get_content();
 
 	_is_running = true;
 
