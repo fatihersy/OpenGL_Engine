@@ -1,10 +1,14 @@
 #include "pch.h"
+
 #include "application_manager.h"
 
 #include "renderer_frontend.h"
 #include "transformations.h"
 
+#include "shader_system.h"
+
 static frenderer_backend backend;
+
 
 Application_manager::Application_manager() 
 {
@@ -15,11 +19,6 @@ Application_manager::Application_manager()
 Application_manager::~Application_manager() 
 {
 	backend = { 0 };
-}
-
-void Application_manager::create_shape()
-{
-	// TODO: Create shape
 }
 
 b8 Application_manager::create_application()
@@ -34,6 +33,21 @@ b8 Application_manager::create_application()
 	backend.define_key_event(GLFW_KEY_W, APPLICATION_PING_INPUT);
 	backend.define_key_event(GLFW_KEY_SPACE, APPLICATION_CLEAR_CONSOLE);
 	backend.define_key_event(GLFW_KEY_P, APPLICATION_SWITCH_POLY_MOD);
+
+	renderer_create_shape(1, QUAD);
+
+	fshader shader;
+
+	shader.add_layout("0", "vec3", "aPos");
+	shader.add_layout("1", "vec3", "aColor");
+	shader.add_layout("2", "vec2", "aTexCoord");
+
+	shader.add_variable("out", "vec3", "ourColor");
+	shader.add_variable("out", "vec2", "TexCoord");
+
+	shader.delete_layout("0");
+
+	//shader.print_content();
 
 	_is_running = true;
 

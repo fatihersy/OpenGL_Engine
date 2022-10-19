@@ -1,13 +1,7 @@
 #include "pch.h"
 #include "renderer_backend.h"
 
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
-
-#include "window.h"
-#include "input.h"
-
-#include "renderer_types.inl"
+#include "opengl_backend.h"
 
 static b8 is_initialized = false;
 
@@ -15,42 +9,35 @@ b8 renderer_backend_create(frenderer_backend* backend)
 {
 	if (is_initialized) return false;
 
-	if (!glfwInit()) return false;
+	if (!opengl_renderer_backend_initialize(backend)) return false;
 
-	if (!initialize_window(backend->window.title, 
-						 backend->window.width, 
-						 backend->window.height)) 
-	return false;
+	backend->renderer_input_initialize = opengl_renderer_input_initialize;
+	backend->define_key_event = opengl_renderer_define_key_event;
+	backend->update_input_system = opengl_renderer_update_input;
+	backend->get_window_instance = opengl_renderer_get_window;
+	backend->renderer_begin_frame = opengl_renderer_begin_frame;
+	backend->renderer_end_frame = opengl_renderer_end_frame;
+	backend->window_should_close = opengl_renderer_window_should_close;
+	backend->renderer_create_default_geometry = opengl_renderer_create_geometry;
+	backend->renderer_draw_frame = opengl_renderer_draw_frame;
 
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		std::cout << "Failed to Load GLAD!" << std::endl;
-		renderer_backend_destroy();
-		return false;
-	}
-
-	set_framebuffer_callback();
-
-	backend->renderer_input_initialize = initialize_input;
-	backend->define_key_event = define_key_event;
-	backend->update_input_system = update_input_system;
-	backend->get_window_instance = get_window_instance;
-	backend->renderer_begin_frame = glfw_begin_frame;
-	backend->renderer_end_frame = glfw_end_frame;
-	backend->window_should_close = window_should_close;
-
-	backend->window.handle = (GLFWwindow*) get_window_instance();
+	backend->window.handle = opengl_renderer_get_window();
 
 	is_initialized = true;
 
 	return true;
 }
 
-void renderer_backend_destroy() 
+void renderer_backend_destroy(frenderer_backend* backend)
 {
-	destroy_window();
-
-	glfwTerminate();
+	backend->renderer_input_initialize = 0;
+	backend->define_key_event		    = 0;
+	backend->update_input_system		= 0;
+	backend->get_window_instance		= 0;
+	backend->renderer_begin_frame		= 0;
+	backend->renderer_end_frame		= 0;
+	backend->window_should_close		= 0;
+	backend->window.handle			= 0;
 }
 
 
@@ -65,19 +52,6 @@ void draw_shape(glshape shape)
 
 	glBindVertexArray(shape.VAO);
 	glDrawElements(GL_TRIANGLES, shape.indice_count, GL_UNSIGNED_INT, 0);
-}
-
-
-
-b8 renderer_begin_loop()
-{
-	return window_should_close();
-}
-
-b8 terminate_renderer()
-{
-
-	return true;
 }
 
 */

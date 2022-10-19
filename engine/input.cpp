@@ -12,11 +12,20 @@ static std::vector<i32> pressed = {};
 
 std::vector<std::pair<i32, APP_KEY_EVENT>> key_events = {};
 
-b8 initialize_input() 
+b8 input_initialize() 
 {
 	if (is_initialized) return false;
 
 	is_initialized = true;
+
+	return true;
+}
+
+b8 input_shutdown()
+{
+	if (!is_initialized) return false;
+
+	is_initialized = false;
 
 	return true;
 }

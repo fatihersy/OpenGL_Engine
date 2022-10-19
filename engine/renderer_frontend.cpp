@@ -3,12 +3,17 @@
 
 #include "renderer_backend.h"
 
-frenderer_backend* backend;
+frenderer_backend* backend = 0;
 
 static b8 is_initialized = false;
 
+// TODO: Temporary
+static std::vector<fshape> shapes;
+
 b8 renderer_system_initialize(const char* title, i32 width, i32 height)
 {
+	if (is_initialized) return false;
+
 	backend = new frenderer_backend;
 
 	backend->window.title = title;
@@ -22,6 +27,27 @@ b8 renderer_system_initialize(const char* title, i32 width, i32 height)
 	return true;
 }
 
+b8 renderer_create_shape(u32 _ID, geometry_type type) 
+{
+	fshape shape = {};
+
+	shape.ID = _ID;
+
+	shape.x = 0;
+	shape.y = 0;
+	shape.z = 0;
+
+	shape.height = 1;
+	shape.width = 1;
+	shape.scale = 1;
+
+	shapes.push_back(shape);
+
+	backend->renderer_create_default_geometry(shape, type);
+
+	return true;
+}
+
 frenderer_backend* get_backend_instance()
 {
 	if (!is_initialized) return nullptr;
@@ -31,16 +57,14 @@ frenderer_backend* get_backend_instance()
 
 b8 renderer_system_shutdown() 
 {
-	backend = nullptr;
-
-	renderer_backend_destroy();
+	renderer_backend_destroy(backend);
 
 	return true;
 }
 
 b8 renderer_draw_frame() 
 {
-
+	backend->renderer_draw_frame(shapes);
 
 	return true;
 }

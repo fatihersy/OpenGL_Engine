@@ -5,7 +5,9 @@
 
 #include "renderer_types.inl"
 
-b8 initialize_input();
+b8 input_initialize();
+
+b8 input_shutdown();
 
 b8 define_key_event(i32 code, APP_KEY_EVENT event);
 

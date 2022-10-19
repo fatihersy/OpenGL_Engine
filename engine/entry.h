@@ -2,8 +2,6 @@
 
 #include <iostream>
 
-#include <defines.h>
-
 #include "application.h"
 
 extern b8 create_client();
@@ -15,6 +13,7 @@ int main(void)
 	if(!create_client()) return -1;
 
 	if(!application_run()) std::cout << "App Closed\n";
+
 
 	return 0;
 }

@@ -8,16 +8,15 @@
 class Application_manager
 {
 public:
+
 	 Application_manager();
 	~Application_manager();
 
 	b8 create_application();
+	b8 is_running();
 
-	void create_shape();
 	void update_renderer();
 	void update_systems();
-
-	b8 is_running();
 
 private:
 

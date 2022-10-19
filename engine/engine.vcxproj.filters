@@ -23,9 +23,6 @@
     <Filter Include="Systems">
       <UniqueIdentifier>{329c45fe-8308-4de1-b6e4-6f37f94be13e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform">
-      <UniqueIdentifier>{cff870e5-7adf-49d7-871f-d172b408910b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{16e9efa4-8ae8-4d3c-8619-ec1c3528a834}</UniqueIdentifier>
     </Filter>
@@ -46,9 +43,6 @@
     <ClInclude Include="entry.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform.h">
-      <Filter>Platform</Filter>
-    </ClInclude>
     <ClInclude Include="application_manager.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -60,12 +54,6 @@
     </ClInclude>
     <ClInclude Include="transformations.h">
       <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="file_stream.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="primitives.h">
-      <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="renderer_frontend.h">
       <Filter>Renderer</Filter>
@@ -82,6 +70,21 @@
     <ClInclude Include="shader.h">
       <Filter>Renderer\OpenGL &amp; Libraries</Filter>
     </ClInclude>
+    <ClInclude Include="opengl_backend.h">
+      <Filter>Renderer\OpenGL &amp; Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry_system.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="shader_system.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="fstring.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ftool.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -89,9 +92,6 @@
     </ClCompile>
     <ClCompile Include="application.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="platform_win32.cpp">
-      <Filter>Platform</Filter>
     </ClCompile>
     <ClCompile Include="application_manager.cpp">
       <Filter>Core</Filter>
@@ -104,12 +104,6 @@
     </ClCompile>
     <ClCompile Include="transformations.cpp">
       <Filter>Math</Filter>
-    </ClCompile>
-    <ClCompile Include="file_stream.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="primitives.cpp">
-      <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="renderer_frontend.cpp">
       <Filter>Renderer</Filter>
@@ -125,6 +119,18 @@
     </ClCompile>
     <ClCompile Include="shader.cpp">
       <Filter>Renderer\OpenGL &amp; Libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="opengl_backend.cpp">
+      <Filter>Renderer\OpenGL &amp; Libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry_system.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="fstring.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ftool.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

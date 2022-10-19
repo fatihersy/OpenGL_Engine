@@ -9,11 +9,11 @@ template<typename T> u64 VECTOR_SIZE(std::vector<T> vector)
 	return vector.size() * sizeof(T);
 }
 
-typedef enum primitive_types
+typedef enum geometry_type
 {
 	TRIANGLE,
 	QUAD
-} primitive_types;
+} geometry_type;
 
 typedef struct fshape
 {
@@ -46,13 +46,6 @@ typedef struct fwindow
 
 } fwindow;
 
-typedef struct render_packet 
-{
-	f32 delta_time;
-
-	const std::vector<fshape> views;
-};
-
 typedef struct frenderer_backend 
 {
 	fwindow window;
@@ -67,9 +60,13 @@ typedef struct frenderer_backend
 
 	void (*renderer_begin_frame) ();
 
+	void (*renderer_draw_frame) (std::vector<fshape> out_shapes);
+
 	void (*renderer_end_frame) ();
 
 	void* (*get_window_instance) ();
+
+	b8 (*renderer_create_default_geometry) (fshape _shape, geometry_type _type);
 
 } frenderer_backend;
 
