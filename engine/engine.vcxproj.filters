@@ -85,6 +85,9 @@
     <ClInclude Include="ftool.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="event.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -130,6 +133,9 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="ftool.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="event.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>

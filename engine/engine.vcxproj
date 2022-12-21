@@ -147,6 +147,7 @@
     <ClInclude Include="application_manager.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="entry.h" />
+    <ClInclude Include="event.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="fstring.h" />
     <ClInclude Include="ftool.h" />
@@ -166,6 +167,7 @@
     <ClCompile Include="application.cpp" />
     <ClCompile Include="application_manager.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="event.cpp" />
     <ClCompile Include="fstring.cpp" />
     <ClCompile Include="ftool.cpp" />
     <ClCompile Include="geometry_system.cpp" />
