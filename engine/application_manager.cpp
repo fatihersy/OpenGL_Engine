@@ -6,9 +6,11 @@
 #include "transformations.h"
 
 #include "shader_system.h"
+#include "event.h"
 
 static frenderer_backend backend;
 
+b8 print_hello(u16 code, void* sender, void* listener_inst);
 
 Application_manager::Application_manager() 
 {
@@ -54,6 +56,12 @@ b8 Application_manager::create_application()
 
 	std::cout << shader.get_content();
 
+	event_register(1, 0, print_hello);
+	event_register(1, 0, print_hello);
+
+	event_fire(1, 0);
+
+
 	_is_running = true;
 
 	return true;
@@ -95,3 +103,11 @@ void Application_manager::update_systems()
 
 
 }
+
+b8 print_hello(u16 code, void* sender, void* listener_inst)
+{
+	std::cout << "Hello World" << std::endl;
+
+	return true;
+}
+
