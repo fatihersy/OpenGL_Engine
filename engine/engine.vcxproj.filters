@@ -61,12 +61,6 @@
     <ClInclude Include="renderer_backend.h">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="window.h">
-      <Filter>Renderer\OpenGL &amp; Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="input.h">
-      <Filter>Renderer\OpenGL &amp; Libraries</Filter>
-    </ClInclude>
     <ClInclude Include="shader.h">
       <Filter>Renderer\OpenGL &amp; Libraries</Filter>
     </ClInclude>
@@ -86,6 +80,18 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="event.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl2.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="window.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="platform.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
@@ -114,12 +120,6 @@
     <ClCompile Include="renderer_backend.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="input.cpp">
-      <Filter>Renderer\OpenGL &amp; Libraries</Filter>
-    </ClCompile>
-    <ClCompile Include="window.cpp">
-      <Filter>Renderer\OpenGL &amp; Libraries</Filter>
-    </ClCompile>
     <ClCompile Include="shader.cpp">
       <Filter>Renderer\OpenGL &amp; Libraries</Filter>
     </ClCompile>
@@ -136,6 +136,18 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="event.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="sdl2.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="window.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="platform.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>

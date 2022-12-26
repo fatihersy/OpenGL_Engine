@@ -5,7 +5,7 @@
 
 #include "renderer_types.inl"
 
-b8 renderer_system_initialize(const char* title, i32 width, i32 height);
+b8 renderer_system_initialize();
 b8 renderer_system_shutdown();
 
 frenderer_backend* get_backend_instance();

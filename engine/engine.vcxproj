@@ -119,8 +119,8 @@
       <SubSystem>
       </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)packages\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)packages\lib\GLFW;$(SolutionDir)packages\lib\SDL2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sdl2.lib;sdl2main.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -155,8 +155,10 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="opengl_backend.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="renderer_backend.h" />
     <ClInclude Include="renderer_frontend.h" />
+    <ClInclude Include="sdl2.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shader_system.h" />
     <ClInclude Include="stb_image.h" />
@@ -182,8 +184,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="platform.cpp" />
     <ClCompile Include="renderer_backend.cpp" />
     <ClCompile Include="renderer_frontend.cpp" />
+    <ClCompile Include="sdl2.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="transformations.cpp" />
     <ClCompile Include="window.cpp" />

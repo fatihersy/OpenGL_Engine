@@ -1,79 +1,53 @@
 #include "pch.h"
 #include "window.h"
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "sdl2.h"
 
-static GLFWwindow* window = 0;
-static i32 width = 0;
-static i32 height = 0;
+typedef struct fwindow
+{
+	void* handle;
+
+	const char* title;
+	i32 width;
+	i32 height;
+
+} fwindow;
+
+static fwindow* window = { 0 };
+
 static b8 is_initialized = false;
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-
-void* get_window_instance() 
-{
-	return window;
-}
-
-b8 initialize_window(const char* title, i32 _width, i32 _height) 
+b8 initialize_window_system(const char* title, i32 _width, i32 _height)
 {
 	if (is_initialized) return false;
 
-	width = _width;
-	height = _height;
+	window = new fwindow;
 
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	window->width = _width;
+	window->height = _height;
+	window->title = title;
 
-	window = glfwCreateWindow(width, height, title, nullptr, nullptr);
-
-	if (!window)
-	{
-		std::cout << "Window Cannot Be Initialize!\n";
-		glfwTerminate();
-		return false;
-	}
-
-	glfwMakeContextCurrent(window);
+	if(!SDL_initialize_window(
+		window->title, 
+		window->width, 
+		window->height)) return false;
 
 	is_initialized = true;
 
 	return true;
 }
 
-b8 window_should_close()
+b8 shutdown_window_system() 
 {
-	return !glfwWindowShouldClose(window);
-}
+	if (!is_initialized) return false;
 
+	destroy_window();
 
-void glfw_begin_frame() 
-{
-	glClear(GL_COLOR_BUFFER_BIT);
-	glClearColor(0.8f, 0.3f, 0.3f, 1.0f);
-}
-
-void glfw_end_frame() 
-{
-	glfwSwapBuffers(window);
-	glfwPollEvents();
-}
-
-void set_framebuffer_callback()
-{
-	glViewport(0, 0, width, height);
-
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	return true;
 }
 
 void destroy_window() 
 {
-	glfwDestroyWindow(window);
+	SDL_destroy_window();
 }
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-	glViewport(0, 0, width, height);
-}

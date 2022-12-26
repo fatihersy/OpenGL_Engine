@@ -10,15 +10,11 @@ static b8 is_initialized = false;
 // TODO: Temporary
 static std::vector<fshape> shapes;
 
-b8 renderer_system_initialize(const char* title, i32 width, i32 height)
+b8 renderer_system_initialize()
 {
 	if (is_initialized) return false;
 
 	backend = new frenderer_backend;
-
-	backend->window.title = title;
-	backend->window.width = width;
-	backend->window.height = height;
 
 	if(!renderer_backend_create(backend)) return false;
 

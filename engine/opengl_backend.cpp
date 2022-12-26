@@ -1,13 +1,9 @@
 #include "pch.h"
 #include "opengl_backend.h"
 
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
-
 #include "gl_types.inl"
 
-#include "input.h"
-#include "window.h"
+#include "sdl2.h"
 #include "shader.h"
 #include "geometry_system.h"
 
@@ -19,21 +15,7 @@ b8 opengl_renderer_backend_initialize(frenderer_backend* backend)
 {
 	if (is_initialized) return false;
 
-	if (!glfwInit()) return false;
-
-	if (!initialize_window(backend->window.title,
-		backend->window.width,
-		backend->window.height))
-		return false;
-
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		std::cout << "Failed to Load GLAD!" << std::endl;
-		opengl_renderer_backend_shutdown();
-		return false;
-	}
-
-	set_framebuffer_callback();
+	SDL_initialize_renderer();
 
 	is_initialized = true;
 
@@ -41,13 +23,6 @@ b8 opengl_renderer_backend_initialize(frenderer_backend* backend)
 }
 
 void opengl_renderer_backend_shutdown() {  }
-b8   opengl_renderer_input_initialize() { return input_initialize(); }
-void opengl_renderer_input_shutdown()   { input_shutdown(); }
-
-b8 opengl_renderer_define_key_event(i32 code, APP_KEY_EVENT code_event) {
-	return define_key_event(code, code_event);
-}
-b8 opengl_renderer_update_input(void* window) { return update_input_system(window); }
 
 b8 opengl_renderer_create_geometry(fshape _shape, geometry_type _type) 
 {
@@ -72,21 +47,24 @@ b8 opengl_renderer_create_geometry(fshape _shape, geometry_type _type)
 	return true;
 }
 
-b8 opengl_renderer_window_should_close() { return window_should_close(); }
-void* opengl_renderer_get_window()	 { return get_window_instance(); }
-
-void  opengl_renderer_begin_frame() { glfw_begin_frame(); }
-void  opengl_renderer_end_frame()	 { glfw_end_frame(); }
+void  opengl_renderer_begin_frame() 
+{
+	SDL_renderer_begin_frame();
+}
+void  opengl_renderer_end_frame()	 
+{ 
+	SDL_renderer_end_frame();
+}
 
 void opengl_renderer_draw_frame(std::vector<fshape> out_shapes) 
 {
 	for (const glshape shape : glshapes)
 	{
-		glUseProgram(shape.program_handle);
+		//glUseProgram(shape.program_handle);
 
-		if (shape.texture_handle) glBindTexture(GL_TEXTURE_2D, shape.texture_handle);
+		//if (shape.texture_handle) glBindTexture(GL_TEXTURE_2D, shape.texture_handle);
 
-		glBindVertexArray(shape.VAO);
-		glDrawElements(GL_TRIANGLES, shape.indice_count, GL_UNSIGNED_INT, 0);
+		//glBindVertexArray(shape.VAO);
+		//glDrawElements(GL_TRIANGLES, shape.indice_count, GL_UNSIGNED_INT, 0);
 	}
 }

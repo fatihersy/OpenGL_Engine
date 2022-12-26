@@ -7,36 +7,55 @@
 
 #include "shader_system.h"
 #include "event.h"
+#include "window.h"
+#include "platform.h"
+#include "input.h"
 
-static frenderer_backend backend;
+typedef struct application_state
+{
+	b8 _is_running;
+	b8 _is_suspended;
 
-b8 print_hello(u16 code, void* sender, void* listener_inst);
+} application_state;
+
+static application_state* app_state;
+
+static frenderer_backend* backend;
+
+b8 application_on_event(u16 code, void* sender, void* listener_inst, event_context context);
 
 Application_manager::Application_manager() 
 {
-	this->_is_running = false;
-	this->_is_suspended = false;
+	app_state = new application_state;
+	backend = new frenderer_backend;
+
+	app_state->_is_running = false;
+	app_state->_is_suspended = false;
 }
 
 Application_manager::~Application_manager() 
 {
-	backend = { 0 };
+	delete backend;
+	delete app_state;
 }
 
 b8 Application_manager::create_application()
 {
-	if (!renderer_system_initialize("Hello OpenGL", 800, 640)) return false;
+	if(!initialize_core_systems()) return false;
 
-	backend = *get_backend_instance();
+	if(!initialize_window_system("MY ENGINE", 800, 600)) return false;
 
-	if (!backend.renderer_input_initialize()) return false;
+	if(!renderer_system_initialize()) return false;
 
-	backend.define_key_event(GLFW_KEY_ESCAPE, APPLICATION_KEY_EVENT_QUIT);
-	backend.define_key_event(GLFW_KEY_W, APPLICATION_PING_INPUT);
-	backend.define_key_event(GLFW_KEY_SPACE, APPLICATION_CLEAR_CONSOLE);
-	backend.define_key_event(GLFW_KEY_P, APPLICATION_SWITCH_POLY_MOD);
+	initialize_event_system();
 
-	renderer_create_shape(1, QUAD);
+	if(!initialize_input_system()) return false;
+
+	backend = get_backend_instance();
+
+	// TODO: INIT INPUT
+
+	//renderer_create_shape(1, QUAD);
 
 	fshader shader;
 
@@ -56,13 +75,10 @@ b8 Application_manager::create_application()
 
 	std::cout << shader.get_content();
 
-	event_register(1, 0, print_hello);
-	event_register(1, 0, print_hello);
+	event_register(KEY_ESCAPE, 0, application_on_event);
+	//event_register(APPLICATION_KEY_UP, 0, application_on_event, event_context {});
 
-	event_fire(1, 0);
-
-
-	_is_running = true;
+	app_state->_is_running = true;
 
 	return true;
 }
@@ -70,43 +86,52 @@ b8 Application_manager::create_application()
 
 b8 Application_manager::is_running() 
 {
-	if(this->_is_suspended) 
-	{
-		std::cout << "Application is suspended. Shutting Down!" << std::endl;
-		return false;
-	}
-
-	if (!this->_is_running)
+	if (!platform_pump_message())
 	{
 		std::cout << "Application is stopped working. Shutting Down." << std::endl;
 		return false;
 	}
 
-	return backend.window_should_close();
+	if (!app_state->_is_running) 
+	{
+		std::cout << "Application is stopped working. Shutting Down." << std::endl;
+		return false;
+	}
+
+	if(app_state->_is_suspended)
+	{
+		std::cout << "Application is suspended. Shutting Down!" << std::endl;
+		return false;
+	}
+
+	return true;
 }
 
 void Application_manager::update_renderer()
 {
-	backend.renderer_begin_frame();
+	backend->renderer_begin_frame();
 
-	if (!renderer_draw_frame()) this->_is_suspended = true;
+	if (!renderer_draw_frame()) app_state->_is_suspended = true;
 
-	backend.renderer_end_frame();
+	backend->renderer_end_frame();
 }
 
 void Application_manager::update_systems() 
 {
-	backend.update_input_system
-	(
-		backend.window.handle
-	);
-
 
 }
 
-b8 print_hello(u16 code, void* sender, void* listener_inst)
+b8 application_on_event(u16 code, void* sender, void* listener_inst, event_context context)
 {
-	std::cout << "Hello World" << std::endl;
+	switch (code)
+	{
+	case KEY_ESCAPE:
+		app_state->_is_running = false;
+		break;
+
+	default:
+		break;
+	}
 
 	return true;
 }
